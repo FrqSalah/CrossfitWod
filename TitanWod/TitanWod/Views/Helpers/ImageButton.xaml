@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CrossfitTitans.Views.Helpers.ImageButton"
+             WidthRequest="120" HeightRequest="60">
+  <ContentView.Content>
+        <Frame CornerRadius="4" HasShadow="false" OutlineColor="Silver" BackgroundColor="Gray">
+        <StackLayout Orientation="Horizontal">
+            <Image x:Name="innerImage" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+            <Label x:Name="innerLabel" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+        </StackLayout>
+        </Frame>
+    </ContentView.Content>
+</ContentView>
