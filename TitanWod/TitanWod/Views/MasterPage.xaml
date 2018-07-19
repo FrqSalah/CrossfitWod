@@ -3,34 +3,60 @@
              xmlns:local="clr-namespace:CrossfitTitans"
              xmlns:Views="clr-namespace:TitanWod.Views"
              xmlns:Items="clr-namespace:TitanWod.Helpers.MenuItems"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
 			 x:Class="TitanWod.Views.MasterPage"
 			 Padding="0,40,0,0"
 			 Icon="hamburger.png"
 			 Title="Wods Organiser">
-    <StackLayout>
-        <ListView x:Name="listView">
-            <ListView.ItemsSource>
-                <x:Array Type="{x:Type Items:MasterPageItem}">
-                    <Items:MasterPageItem Title="Wods" IconSource="wod.png" TargetType="{x:Type Views:Wods}" />
-                    <Items:MasterPageItem Title="Profile" IconSource="profile.png" TargetType="{x:Type Views:Profile}" />
-                    <Items:MasterPageItem Title="Timers" IconSource="timer.png" TargetType="{x:Type Views:WodTimers}" />
-                    <Items:MasterPageItem Title="Settings" IconSource="settings.png" TargetType="{x:Type Views:Settings}" />
-                </x:Array>
-            </ListView.ItemsSource>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Grid Padding="5,10">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="30"/>
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Image Source="{Binding IconSource}" />
-                            <Label Grid.Column="1" Text="{Binding Title}" />
-                        </Grid>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </StackLayout>
+    
+    <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25*" />
+            <RowDefinition Height="75*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" BackgroundColor="#293849" Opacity="0.6">
+            <ffimageloading:CachedImage
+                    Aspect="AspectFill"
+                    Source="{Binding UserAvatar}"
+                    CacheType="Disk"
+                    CacheDuration="30">
+                <ffimageloading:CachedImage.LoadingPlaceholder>
+                    <OnPlatform x:TypeArguments="ImageSource">
+                        <On Platform="Android, iOS" Value="homeSlide1.jpg" />
+                        <On Platform="UWP" Value="Assets/avatar.png" />
+                    </OnPlatform>
+                </ffimageloading:CachedImage.LoadingPlaceholder>
+            </ffimageloading:CachedImage>
+        </Grid>
+        <Grid Grid.Row="1">
+            <!--<Grid BackgroundColor="#293849" Opacity="0.6"/>-->
+            <StackLayout>
+                <ListView x:Name="listView">
+                    <ListView.ItemsSource>
+                        <x:Array Type="{x:Type Items:MasterPageItem}">
+                            <Items:MasterPageItem Title="Wods" IconSource="wod.png" TargetType="{x:Type Views:Wods}" />
+                            <Items:MasterPageItem Title="Profile" IconSource="profile.png" TargetType="{x:Type Views:Profile}" />
+                            <Items:MasterPageItem Title="Timers" IconSource="timer.png" TargetType="{x:Type Views:WodTimers}" />
+                            <Items:MasterPageItem Title="Settings" IconSource="settings.png" TargetType="{x:Type Views:Settings}" />
+                        </x:Array>
+                    </ListView.ItemsSource>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Padding="5,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="{Binding IconSource}" />
+                                    <Label Grid.Column="1" Text="{Binding Title}" />
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </Grid>
+    </Grid>
 </ContentPage>
